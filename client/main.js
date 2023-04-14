@@ -1,6 +1,7 @@
-const list = document.getElementById("list");
+
 
 document.addEventListener('DOMContentLoaded', () => {
+    const list = document.getElementById("list");
     // make a get request to the backend
     fetch('/items')
         .then(data => data.json())
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 class Item {
     constructor(item){
+        // each element should be a form
         this.toDo = item.item;
 
         this.node = document.createElement('div');
