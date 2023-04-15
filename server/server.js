@@ -7,7 +7,7 @@ const toDoController = require('./controllers/toDoController')
 // parse all requests
 app.use(express.json());
 // parses for forms
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, '../')))
 
@@ -17,6 +17,10 @@ const MONGO = 'mongodb+srv://anneliseemig:RsODy0gTzQDRTOlB@cluster0.ngsmfna.mong
 // route for fetch request
 app.get('/items', toDoController.getItems, (req, res) => {
     res.status(200).send(res.locals.items)
+})
+
+app.delete('/items', toDoController.deleteItems, (req, res) => {
+    res.sendStatus(200);
 })
 
 // setting up mongo database

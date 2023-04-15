@@ -11,8 +11,19 @@ const toDoController = {
         })
         .catch((err) => {
             console.log('error in getItems controller')
+            return next(err);
+        })
+    },
+
+    deleteItems(req, res, next){
+        const { item } = req.body;
+        Item.findOneAndDelete({item: item}).exec()
+        .then((item) => {
+            console.log(item);
             return next();
         })
+        .catch(err => {
+            return next(err)})
     }
 }
 
